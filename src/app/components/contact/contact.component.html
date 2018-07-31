@@ -1,0 +1,41 @@
+<h2>Contact</h2>
+
+<!-- event bubbling 
+     ngClass
+     # template variable
+-->
+
+<div (click)="divClicked()">
+  <button (click)="btnClicked($event)">
+      Btn
+  </button>
+</div>
+ 
+<div [ngClass]="{highlight: toHighlight}"
+     (mouseenter)="toHighlight = true"
+     (mouseleave)="toHighlight = false"
+>
+  <h4>Address</h4>
+  <p>Chennai</p>
+  <p>TN</p>
+</div>
+
+<!-- elvis operator ?. for null/undefined checking -->
+<p>Address not defined : {{address?.city}} </p>
+
+<!-- # Template Reference variable
+
+     Help to get instance of dom element
+     within component html
+-->
+
+<input name="name" #nameElement />
+<p #para1>My Para</p>
+
+<button (click)="nameElement.focus()">
+  Focus
+</button>
+
+<button (click)="para1.textContent = nameElement.value">
+  Set Text
+</button>

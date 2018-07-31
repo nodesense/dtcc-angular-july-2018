@@ -1,0 +1,29 @@
+<div>
+    <!-- {{expr}} - interpolation, data binding -->
+    <h1>{{appTitle}}</h1>
+    <app-header>
+    </app-header>
+ 
+    <app-home>
+        
+    </app-home>
+
+    <app-about>
+
+    </app-about>
+
+    <app-contact>
+
+    </app-contact>
+
+    <!-- pass data to child component -->
+    <app-footer [company]="appTitle"
+                year="2018"
+                [address]="address" 
+
+                (contactEvent)="contactHandler($event)"
+
+                >
+
+    </app-footer>
+</div>

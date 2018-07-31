@@ -1,0 +1,24 @@
+
+<!-- angular 4.0 else part -->
+
+
+<h2>About Page</h2>
+
+<h2>Members</h2>
+
+<button (click)="showList = !showList">
+  {{showList ? "Hide": "Show"}}
+</button>
+
+<table *ngIf="showList else memberNotShown" >
+  <tr *ngFor="let member of members;let i = index">
+     <td>{{i}}-{{member.name}}</td>
+     <td> <img src="{{member.image}}" /> </td>
+     <td>{{member.role}}</td>
+  </tr>
+</table>
+
+
+<ng-template #memberNotShown>
+    <p>Members not shown</p>
+  </ng-template>

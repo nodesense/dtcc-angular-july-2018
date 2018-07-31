@@ -1,0 +1,29 @@
+<h2>Home Page</h2>
+<!---
+  {{expr}} - interpolation, evaluate expr, toString()
+  [propertyName]="expr" - property binding
+  (click)="expr" - event binding
+-->
+
+<p>Counter {{counter}}</p>
+<p>Counter + 1 {{counter + 1}} </p>
+
+<input [value]="counter" />
+<input [value]="counter * 2" />
+
+<p>
+  {{ counter % 2 == 0? "Even": "Odd"}}
+</p>
+
+<button [disabled]="counter % 2 == 0">
+  Test
+</button>
+
+
+<button (click)="increment()">
+   Incr
+</button>
+
+<button (click)="counter = counter - 1">
+    Decr
+ </button>
