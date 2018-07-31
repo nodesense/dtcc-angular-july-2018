@@ -11,7 +11,7 @@
 </button>
 
 <table *ngIf="showList else memberNotShown" >
-  <tr *ngFor="let member of members;let i = index">
+  <tr *ngFor="let member of members;let i = index"  appHighlight>
      <td>{{i}}-{{member.name}}</td>
      <td> <img src="{{member.image}}" /> </td>
      <td>{{member.role}}</td>

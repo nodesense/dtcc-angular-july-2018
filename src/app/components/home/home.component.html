@@ -1,14 +1,35 @@
-<h2>Home Page</h2>
+<h2>{{title | uppercase}} Page</h2>
 <!---
   {{expr}} - interpolation, evaluate expr, toString()
   [propertyName]="expr" - property binding
   (click)="expr" - event binding
 -->
 
+
+<p> Date {{today}}</p>
+
+<p> Date pipe {{today | date}}</p>
+
+<p> full date {{today | date:'fullDate' | uppercase}}</p>
+
+<p>Custom date {{today | date:'yyyy/MM/dd'}} </p>
+
+<p> Price {{price | currency}}</p>
+
+<p> Price INR {{price | currency:'INR'}}</p>
+
+<p> Price EUR {{price | currency:'EUR'}}</p>
+
+<p> Power 2^3 {{2 | power:3}} </p>
+
+<p> Power 5^1 {{5 | power}} </p>
+
+<p> Power counter^2 {{counter | power:2}} </p>
+
 <p>Counter {{counter}}</p>
 <p>Counter + 1 {{counter + 1}} </p>
 
-<input [value]="counter" />
+<input [value]="counter" appHighlight />
 <input [value]="counter * 2" />
 
 <p>
@@ -27,3 +48,8 @@
 <button (click)="counter = counter - 1">
     Decr
  </button>
+
+
+ <app-like>
+
+ </app-like>

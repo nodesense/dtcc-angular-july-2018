@@ -1,6 +1,6 @@
 <div>
     <!-- {{expr}} - interpolation, data binding -->
-    <h1>{{appTitle}}</h1>
+    <h1 appHighlight>{{appTitle}}</h1>
     <app-header>
     </app-header>
  
@@ -17,7 +17,7 @@
     </app-contact>
 
     <!-- pass data to child component -->
-    <app-footer [company]="appTitle"
+    <app-footer [company]="appTitle | uppercase"
                 year="2018"
                 [address]="address" 
 
