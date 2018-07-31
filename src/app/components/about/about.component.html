@@ -10,6 +10,10 @@
   {{showList ? "Hide": "Show"}}
 </button>
 
+<button (click)="empty()">
+  Empty Members
+</button>
+
 <table *ngIf="showList else memberNotShown" >
   <tr *ngFor="let member of members;let i = index"  appHighlight>
      <td>{{i}}-{{member.name}}</td>

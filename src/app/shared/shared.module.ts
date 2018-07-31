@@ -1,3 +1,4 @@
+import { DataService } from './services/data.service';
 import { HighlightDirective } from './directives/highlight.directive';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,6 +24,10 @@ import { SortPipe } from './pipes/sort.pipe';
       PowerPipe,
       FilterPipe,
       SortPipe
+  ],
+
+  providers: [
+    DataService, // singleton instance
   ]
 })
 export class SharedModule { }
