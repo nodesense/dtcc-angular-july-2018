@@ -1,4 +1,18 @@
+# Get started
+
+    git clone https://github.com/nodesense/dtcc-angular-july-2018
+
+    cd dtcc-angular-july-2018
+    
+    npm install
+
+    ng serve
+
+    
+
 # ProductApp
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
