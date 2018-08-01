@@ -10,6 +10,8 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SharedModule } from './shared/shared.module';
   
+// ng 4.3 onwards
+import {HttpClientModule} from '@angular/common/http';
 
 // Step 1
 // configuration, map url to a component
@@ -39,6 +41,7 @@ const routes: Routes = [
     // other module depenencies
     imports: [
         BrowserModule,
+        HttpClientModule,
 
         SharedModule,
 
