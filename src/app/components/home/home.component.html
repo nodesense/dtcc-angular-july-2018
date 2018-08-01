@@ -6,6 +6,17 @@
 -->
 
 
+<h4>Members</h4>
+
+<!-- async shall subscribe automatically -->
+
+<ul>
+  <li *ngFor="let member of members$ | async">
+      {{member.name}}
+  </li>
+</ul>
+
+
 <p> Date {{today}}</p>
 
 <p> Date pipe {{today | date}}</p>

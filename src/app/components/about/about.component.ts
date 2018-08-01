@@ -1,7 +1,6 @@
 import { DataService, Member } from './../../shared/services/data.service';
 import { Component, OnInit } from '@angular/core';
- 
-
+  
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -17,7 +16,7 @@ export class AboutComponent implements OnInit {
   constructor(private dataService: DataService) {
     console.log('about comp created');
 
-    this.members = dataService.members;
+    // this.members = dataService.members;
    }
 
 

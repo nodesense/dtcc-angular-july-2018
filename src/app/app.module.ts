@@ -1,3 +1,4 @@
+import { ProductModule } from './product/product.module';
 import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,12 +10,42 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SharedModule } from './shared/shared.module';
   
+
+// Step 1
+// configuration, map url to a component
+import {Routes, RouterModule} from '@angular/router';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+const routes: Routes = [
+    {
+        path: '',
+        component:  HomeComponent
+    },
+    {
+        path: 'about',
+        component: AboutComponent
+    },
+    {
+        path: 'contact',
+        component: ContactComponent
+    }, 
+
+    {
+        path: '**', // not found
+        component: NotFoundComponent
+    }
+];
+
 @NgModule({
     // other module depenencies
     imports: [
         BrowserModule,
 
-        SharedModule
+        SharedModule,
+
+        // Step 2: apply route configuration into module
+        RouterModule.forRoot(routes),
+
+        ProductModule
     ],
 
     // components, directive, pipes
@@ -25,6 +56,7 @@ import { SharedModule } from './shared/shared.module';
         HomeComponent,
         AboutComponent,
         ContactComponent,
+        NotFoundComponent,
          
         // HeaderComponent,
         // FooterComponent, HomeComponent

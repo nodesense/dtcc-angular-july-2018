@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   membersLength = 0;
 
   constructor(private dataService: DataService) {
-      this.membersLength = dataService.members.length;
+      // this.membersLength = dataService.members.length;
   }
 
   ngOnInit() {

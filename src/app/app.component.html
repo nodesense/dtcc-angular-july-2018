@@ -3,18 +3,13 @@
     <h1 appHighlight>{{appTitle}}</h1>
     <app-header>
     </app-header>
- 
-    <app-home>
-        
-    </app-home>
+  
 
-    <app-about>
+    <!-- step 3: router view container, home/about/contact html placed -->
 
-    </app-about>
+    <router-outlet>
+    </router-outlet>
 
-    <app-contact>
-
-    </app-contact>
 
     <!-- pass data to child component -->
     <app-footer [company]="appTitle | uppercase"

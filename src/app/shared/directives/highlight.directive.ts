@@ -31,7 +31,7 @@ export class HighlightDirective {
 
   @HostListener('mouseenter')
   onEnter() {
-    console.log('mouse enter');
+   // console.log('mouse enter');
     this.renderer.setStyle(this.hostElement.nativeElement, 
                             'background',
                             'lightgreen');
@@ -39,7 +39,7 @@ export class HighlightDirective {
 
   @HostListener('mouseleave')
   onLeave() {
-    console.log('mouse leave');
+    //console.log('mouse leave');
     this.renderer.removeStyle(this.hostElement.nativeElement,
                               'background');
   }

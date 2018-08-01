@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 export interface Member {
   name: string;
@@ -28,7 +29,10 @@ export class DataService {
   ];
 
   // Observable $ is convention
-  members$: Subject<Member[]> = new Subject();
+  // members$: Subject<Member[]> = new Subject();
+
+  // behavior subject publish values as soon as consumer subscribe
+  members$: BehaviorSubject<Member[]> = new BehaviorSubject(this.members);
 
   constructor() { 
     console.log('Data service created');
