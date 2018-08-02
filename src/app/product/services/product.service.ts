@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Product } from '../models/product';
 import { Brand } from '../models/brand';
+
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +19,32 @@ export class ProductService {
       return this.http.get<Product[]>('http://localhost:7070/api/products');
   }
 
+
+  searchProducts(q: string): Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:7070/api/products?q=' + q);
+  }
+
   getBrands(): Observable<Brand[]> {
-    return this.http.get<Brand[]> ('http://localhost:7070/api/brands');
+
+    const storage = window.localStorage;
+
+    const brandsCache = storage.getItem('brands');
+    if (brandsCache) {
+      console.log('serving from cache ');
+      const brands = JSON.parse(brandsCache);
+      return  of(brands); // convert array to observable<array>
+    }
+    
+    console.log('serving from server');
+
+    // implement cache storage
+    return this.http
+                .get<Brand[]> ('http://localhost:7070/api/brands')
+                .pipe(map (brands => {
+                  // TODO: store to localStorage
+                  storage.setItem('brands', JSON.stringify(brands));
+                  return brands;
+                }));
   }
 
   deleteProduct(id: number): Observable<any> {

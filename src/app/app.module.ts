@@ -1,4 +1,4 @@
-import { ProductModule } from './product/product.module';
+
 import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,6 +10,8 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SharedModule } from './shared/shared.module';
   
+// import { ProductModule } from './product/product.module';
+
 // ng 4.3 onwards
 import {HttpClientModule} from '@angular/common/http';
 
@@ -26,10 +28,16 @@ const routes: Routes = [
         path: 'about',
         component: AboutComponent
     },
+
     {
         path: 'contact',
         component: ContactComponent
     }, 
+
+    { // for lazy loading
+        path: 'products',
+        loadChildren: './product/product.module#ProductModule'
+    },
 
     {
         path: '**', // not found
@@ -48,7 +56,7 @@ const routes: Routes = [
         // Step 2: apply route configuration into module
         RouterModule.forRoot(routes),
 
-        ProductModule
+       // ProductModule
     ],
 
     // components, directive, pipes

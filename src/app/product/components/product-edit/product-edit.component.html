@@ -2,14 +2,48 @@
 
 <p>Price {{product?.price}}</p>
 
-<form (ngSubmit)="saveProduct()" >
+<p *ngIf="productForm.invalid">
+  Invalid Form Data
+</p>
+
+<p *ngIf="productForm.dirty">
+   Form Data changed
+</p>
+
+<form (ngSubmit)="saveProduct()"  #productForm="ngForm" >
  Name
- <input name="name" [(ngModel)]="product.name" />
+ <input name="name" 
+      [(ngModel)]="product.name"
+ 
+      required
+      minlength="2"
+
+      #productName="ngModel"
+      #nameInput
+/>
+
+<!-- #productName="ngModel" get access to ngModel directive instance -->
+
+<p *ngIf="productName.invalid">
+   Name is invalid input
+</p>
+
+<p *ngIf="productName.dirty">
+  Name is changed
+</p>
+
+<pre>
+  {{productName.errors | json}}
+</pre>
+
 
  <!-- angular sugar -->
  Price
  <input name="price" [ngModel]="product.price"
                      (ngModelChange)="product.price = $event"
+
+                     pattern="[0-9]{3}"
+
  />
 
  Year
@@ -23,7 +57,7 @@
     </option>
  </select>
 
- <button type="submit">Save</button>
+ <button type="submit" [disabled]="productForm.invalid" >Save</button>
 
 </form>
 

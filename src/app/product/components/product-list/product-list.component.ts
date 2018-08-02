@@ -1,18 +1,27 @@
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent implements OnInit {
 
   products$: Observable<Product[]>;
   message: string;
   inProgress: string;
+
+  counter = 1000; // primitive, by value
+  counterList: number[] = []; // reference type
+
+  incr() {
+    this.counter++;
+    this.counterList.push(this.counter);
+  }
 
   constructor(private productService: ProductService) { }
 
@@ -50,6 +59,22 @@ export class ProductListComponent implements OnInit {
                        }
                       
                       );
+  }
+
+  getProductName(product: Product) {
+    //console.log("Get product name called", product.name);
+    return product.name;
+  }
+
+
+  refresh() {
+    this.products$ = this.productService.getProducts();
+  }
+
+  //TODO: fix
+  trackById(index: number, product: Product) {
+    //console.log("PID", product.id);
+    return product.id;
   }
 
 }

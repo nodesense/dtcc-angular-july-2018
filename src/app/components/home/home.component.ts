@@ -22,9 +22,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout( () => {
+      console.log("Home timer called");
+      console.trace();
+    }, 10000);
   }
 
   increment() {
+    console.trace();
     this.counter++;
   }
 

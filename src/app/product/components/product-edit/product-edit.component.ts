@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {Router,
         ActivatedRoute // to read url parameters, id
@@ -8,12 +8,19 @@ import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
 import { Brand } from '../../models/brand';
 
+import {NgForm} from '@angular/forms';
+
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
+
+  // get access to directive instance
+  // <form  #productForm="ngForm" ..
+  @ViewChild('productForm')
+  form: NgForm;
 
   product: Product = new Product(); // create use case
 
@@ -37,6 +44,13 @@ export class ProductEditComponent implements OnInit {
     }
 
     this.brands$ = this.productService.getBrands();
+
+
+    this.form.valueChanges
+             .subscribe ( values => {
+               console.log('Values ', values);
+             });
+
   }
 
   gotoList() {
@@ -45,6 +59,12 @@ export class ProductEditComponent implements OnInit {
   }
 
   saveProduct() {
+
+    if (this.form.pristine) {
+      alert('No form changes, no save');
+      return;
+    }
+
     this.productService.saveProduct(this.product)
                        .subscribe ( savedProduct => {
                           // option 1: continue working on same form

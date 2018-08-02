@@ -1,3 +1,11 @@
-<p>
-  product-search works!
-</p>
+<h2>Product Search</h2>
+
+<form [formGroup]="formGroup" >
+  Search product <input name="pname" formControlName="searchBox" />
+</form>
+
+<ul >
+  <li *ngFor="let product of products$ | async">
+     {{product.name}}
+  </li>
+</ul>
