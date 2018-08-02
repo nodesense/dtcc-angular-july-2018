@@ -1,5 +1,13 @@
 <h2>Product List</h2>
 
+<span *ngIf="message">
+  {{message}}
+</span>
+
+<span *ngIf="inProgress">
+  {{inProgress}}
+</span>
+
 <table>
   <tr>
     <th>Name</th>
@@ -9,7 +17,12 @@
   </tr>
 
   <tr *ngFor="let product of products$ | async">
-    <td>{{product.name}}</td>
+    <td>
+      <a [routerLink]="[ '/products', 'edit', product.id ]">
+          {{product.name}}
+      </a>
+    
+    </td>
     <td>{{product.price}}</td>
     <td>{{product.year}}</td>
     <td>

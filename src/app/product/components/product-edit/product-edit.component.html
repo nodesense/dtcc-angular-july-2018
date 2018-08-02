@@ -1,3 +1,33 @@
-<p>
-  product-edit works!
-</p>
+<h2>Product {{ product.id?'Edit': 'Create'}} - {{product.name}}</h2>
+
+<p>Price {{product?.price}}</p>
+
+<form (ngSubmit)="saveProduct()" >
+ Name
+ <input name="name" [(ngModel)]="product.name" />
+
+ <!-- angular sugar -->
+ Price
+ <input name="price" [ngModel]="product.price"
+                     (ngModelChange)="product.price = $event"
+ />
+
+ Year
+ <input name="year" [(ngModel)]="product.year" />
+
+ Brand
+ <select name="brandId" [(ngModel)]="product.brandId">
+    <option *ngFor="let brand of brands$ | async"
+            [value]="brand.id">
+        {{brand.name}}      
+    </option>
+ </select>
+
+ <button type="submit">Save</button>
+
+</form>
+
+
+<button (click)="gotoList()">
+  List Page
+</button>
