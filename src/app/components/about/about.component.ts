@@ -32,7 +32,7 @@ export class AboutComponent implements OnInit {
   }
 
   empty() {
-    this.dataService.empty();
+      this.dataService.empty();
     // this.members = this.dataService.members;
   }
 

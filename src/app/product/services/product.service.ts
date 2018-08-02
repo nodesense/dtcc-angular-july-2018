@@ -7,6 +7,9 @@ import { Brand } from '../models/brand';
 
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../../environments/environment';
+
+console.log('ENV ', environment);
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +19,12 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
-      return this.http.get<Product[]>('http://localhost:7070/api/products');
+      return this.http.get<Product[]>( environment.apiEndPoint + '/api/products');
   }
 
 
   searchProducts(q: string): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:7070/api/products?q=' + q);
+    return this.http.get<Product[]>(`${environment.apiEndPoint}/api/products?q=${q}`);
   }
 
   getBrands(): Observable<Brand[]> {
@@ -39,7 +42,7 @@ export class ProductService {
 
     // implement cache storage
     return this.http
-                .get<Brand[]> ('http://localhost:7070/api/brands')
+                .get<Brand[]> (environment.apiEndPoint + '/api/brands')
                 .pipe(map (brands => {
                   // TODO: store to localStorage
                   storage.setItem('brands', JSON.stringify(brands));
@@ -49,11 +52,11 @@ export class ProductService {
 
   deleteProduct(id: number): Observable<any> {
     console.log('deleting product ', id);
-    return this.http.delete('http://localhost:7070/api/products/' + id);
+    return this.http.delete(environment.apiEndPoint + '/api/products/' + id);
   }
 
   getProduct(id: number): Observable<Product> { 
-    return this.http.get<Product>('http://localhost:7070/api/products/' + id);
+    return this.http.get<Product>(environment.apiEndPoint + '/api/products/' + id);
   }
 
   saveProduct(product: Product): Observable<Product> {
@@ -61,7 +64,7 @@ export class ProductService {
       // PUT /api/products/123
       // {{data as json}}
       // returns updated product object
-       return this.http.put<Product> ('http://localhost:7070/api/products/' + product.id,
+       return this.http.put<Product> (environment.apiEndPoint +  '/api/products/' + product.id,
                                       product
                                       );
     }
@@ -70,7 +73,7 @@ export class ProductService {
     // {{data as json}}
     // returns updated product object but with id
     // else post/create
-    return this.http.post<Product> ('http://localhost:7070/api/products',
+    return this.http.post<Product> (environment.apiEndPoint +  '/api/products',
     product
     );
   }

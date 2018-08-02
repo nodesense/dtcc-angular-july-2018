@@ -7,8 +7,16 @@
     npm install
 
     ng serve
+ 
+# Configuration
 
-    
+    Modify angular.json, include "staging" settings in angular.json under "configuration" settings.
+
+    To apply custom configuration other than development and production
+
+    > ng build --configuration=staging
+
+    https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/application-environments.md
 
 # ProductApp
 
